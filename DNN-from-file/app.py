@@ -7,6 +7,7 @@ from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 from sklearn.metrics import confusion_matrix, accuracy_score
+from joblib import dump
 
 ## Import data
 dataframe = pd.read_csv('data/customer_staying_or_not.csv')
@@ -38,6 +39,7 @@ y = y.values
 ## Normalizing/scaling the data
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
+dump(scaler, 'scaler.bin', compress=True)
 
 # ## How scaling works
 # data = np.array([[2.0,30.0],[5.0, 60.0], [8.0, 90.0]])

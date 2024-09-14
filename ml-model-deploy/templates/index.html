@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title>ML model</title>
+  </head>
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 1em;
+      max-width: 600px;
+      align-items: center;
+    }
+
+    input {
+      height: 20px;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      flex-direction: column;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Customer stay or not</h1>
+      <form method="post" class="grid">
+        <p>Creditscore:</p>
+        <input type="text" name="CreditScore" placeholder="0-1000" />
+        <p>Age:</p>
+        <input type="text" name="Age" placeholder="18-100" />
+        <p>Tenure:</p>
+        <input type="text" name="Tenure" placeholder="0-10" />
+        <p>Balance:</p>
+        <input type="text" name="Balance" placeholder="0-100000" />
+        <p>NumOfProducts:</p>
+        <input type="text" name="NumOfProducts" placeholder="1-4" />
+        <p>HasCrCard:</p>
+        <input type="text" name="HasCrCard" placeholder="1 or 0" />
+        <p>IsActiveMember:</p>
+        <input type="text" name="IsActiveMember" placeholder="1 or 0" />
+        <p>EstimatedSalary:</p>
+        <input type="text" name="EstimatedSalary" placeholder="0-100000" />
+        <p>Geography_France:</p>
+        <input type="text" name="Geography_France" placeholder="1 or 0" />
+        <p>Geography_Germany:</p>
+        <input type="text" name="Geography_Germany" placeholder="1 or 0" />
+        <p>Geography_Spain:</p>
+        <input type="text" name="Geography_Spain" placeholder="1 or 0" />
+        <p>Female:</p>
+        <input type="text" name="Gender_Female" placeholder="1 or 0" />
+        <p>Male:</p>
+        <input type="text" name="Gender_Male" placeholder="1 or 0" />
+
+        <!-- Input A: <input type='text' name='in1' placeholder='1 or 0' />
+      Input B: <input type='text' name='in2' placeholder='1 or 0' /> -->
+        <input type="submit" />
+      </form>
+      <h3>The result is {{ result }}</h3>
+    </div>
+  </body>
+</html>
