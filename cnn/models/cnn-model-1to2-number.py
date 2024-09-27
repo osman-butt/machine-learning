@@ -15,11 +15,12 @@ from matplotlib import pyplot
 # Part 1 -  ImageDataGenerator
 train_datagen = ImageDataGenerator(rescale = 1./255.)
 
-train_set = train_datagen.flow_from_directory('data/two-digitsData/train',
-                                              target_size = (28,28),
-                                              batch_size = 32,
-                                              class_mode = 'categorical', # for multi-class classification
-                                              color_mode = 'grayscale')
+train_set = train_datagen.flow_from_directory(
+    'data/two-digitsData/train',
+    target_size = (28,28),
+    batch_size = 32,
+    class_mode = 'categorical', # for multi-class classification
+    color_mode = 'grayscale')
 train_set.class_indices # to check the class indices
 
 # Part 2 - Convolution

@@ -15,11 +15,12 @@ print("Classifying images of letters A and B")
 
 # Part 1 -  ImageDataGenerator
 train_datagen = ImageDataGenerator(rescale = 1./255.)
-train_set = train_datagen.flow_from_directory('data/letters/AB/train',
-                                              target_size = (28,28),
-                                              batch_size = 32,
-                                              class_mode = 'categorical', # for multi-class classification
-                                              color_mode = 'grayscale')
+train_set = train_datagen.flow_from_directory(
+    'data/letters/AB/train',
+    target_size = (28,28),
+    batch_size = 32,
+    class_mode = 'categorical', # for multi-class classification
+    color_mode = 'grayscale')
 
 # Part 2 - Convolution
 model = Sequential()
