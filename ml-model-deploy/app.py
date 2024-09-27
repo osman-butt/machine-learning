@@ -17,25 +17,35 @@ def predict(): # this function can have any name
     has_cr_card = request.form.get('HasCrCard')
     is_active_member = request.form.get('IsActiveMember')
     estimated_salary = request.form.get('EstimatedSalary')
-    geography_france = request.form.get('Geography_France')
-    geography_germany = request.form.get('Geography_Germany')
-    geography_spain = request.form.get('Geography_Spain')
-    gender_female = request.form.get('Gender_Female')
-    gender_male = request.form.get('Gender_Male')
-     # Check if any required input is missing
+    geography = request.form.get('Geography')  # Only one selected: France, Germany, Spain
+    gender = request.form.get('Gender')        # Only one selected: Male, Female
+
+    # Check if any required input is missing
     if not all([credit_score, age, tenure, balance, num_of_products, has_cr_card,
-                is_active_member, estimated_salary, geography_france, geography_germany,
-                geography_spain, gender_female, gender_male]):
+                is_active_member, estimated_salary, geography, gender]):
         return render_template('index.html', result='No input(s)')
     
+    # Convert the categorical data to numerical data
+    geography_france = 1 if geography == 'France' else 0
+    geography_germany = 1 if geography == 'Germany' else 0
+    geography_spain = 1 if geography == 'Spain' else 0
 
+    gender_female = 1 if gender == 'Female' else 0
+    gender_male = 1 if gender == 'Male' else 0
+
+    # Prepare the input array
     arr = np.array([[float(credit_score), float(age), float(tenure), float(balance),
-                             float(num_of_products), float(has_cr_card), float(is_active_member),
-                             float(estimated_salary), float(geography_france), float(geography_germany),
-                             float(geography_spain), float(gender_female), float(gender_male)]])
-    scaler = load('model/scaler.bin') # load the scaler
+                    float(num_of_products), float(has_cr_card), float(is_active_member),
+                    float(estimated_salary), float(geography_france), float(geography_germany),
+                    float(geography_spain), float(gender_female), float(gender_male)]])
+    
+    # Load the saved scaler
+    scaler = load('model/scaler.bin')
+    # Use the saved scale to scale the new customer data
     newCustomer = scaler.transform(arr)
-    predictions = model.predict(newCustomer) # make new prediction
+    # Make the prediction
+    predictions = model.predict(newCustomer)
+    # Return the prediction
     return render_template('index.html', result=str(predictions[0][0]))
         # the result is set, by asking for row=0, column=0. Then cast to string.
   except Exception as e:
